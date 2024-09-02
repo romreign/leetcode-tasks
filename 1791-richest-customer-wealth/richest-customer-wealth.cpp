@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maximumWealth(vector<vector<int>>& accounts) {
-        int max_sum = 0, sum = 0;
+        auto max_sum = 0, sum = 0;
         for (auto account : accounts)
         {
             sum = 0;
