@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<int> replaceElements(vector<int>& arr) {
+        cin.tie(0); 
+        ios::sync_with_stdio(0);
         for (auto i = 0; i < arr.size() - 1; i++)
         {
             int maximum = 0;
