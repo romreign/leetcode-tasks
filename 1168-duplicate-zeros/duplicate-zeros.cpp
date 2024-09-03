@@ -5,8 +5,8 @@ public:
         {
             if (arr[i] == 0)
             {
-                arr.erase(arr.end() - 1);
                 arr.emplace(arr.begin() + i, 0);
+                arr.pop_back();
                 i++;
             }
         }
