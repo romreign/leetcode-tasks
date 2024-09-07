@@ -12,16 +12,30 @@
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        if(!root) return {};
         vector<int> result;
-        function<void(TreeNode*)> fun = [&](TreeNode* root)
+        TreeNode* curr = root;
+        stack<TreeNode*> st;
+        TreeNode* last = nullptr;
+        while (curr || !st.empty())
         {
-            if (!root) return;
-            fun(root->left);
-            fun(root->right);
-            result.push_back(root->val);
-        };
-        fun(root);
+            while(curr)
+            {
+                st.push(curr);
+                curr = curr->left;
+            }
+            curr = st.top();
+            if (!curr->right || last == curr->right)
+            {
+                result.push_back(curr->val);
+                st.pop();
+                last = curr;
+                curr = nullptr;
+            }
+            else
+            {
+                curr = curr->right;
+            }
+        }
         return result;
     }
 };
