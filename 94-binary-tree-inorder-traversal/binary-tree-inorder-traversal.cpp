@@ -12,16 +12,17 @@
 class Solution {
 public:
     vector<int> result;
-    void func(TreeNode* root)
-    {
-        if (!root) return;
-        func(root->left);
-        result.push_back(root->val);
-        func(root->right);
-    }
+
     vector<int> inorderTraversal(TreeNode* root) {
         if (!root) return {};
-        func(root);
+        std::function<void(TreeNode*)> fun = [&](TreeNode* root)
+        {
+            if (!root) return;
+            fun(root->left);
+            result.push_back(root->val);
+            fun(root->right);
+        };
+        fun(root);
         return result;
     }
 };
