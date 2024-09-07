@@ -11,18 +11,22 @@
  */
 class Solution {
 public:
-    vector<int> result;
-
     vector<int> inorderTraversal(TreeNode* root) {
-        if (!root) return {};
-        std::function<void(TreeNode*)> fun = [&](TreeNode* root)
+        vector<int> result;
+        TreeNode* curr = root;
+        stack<TreeNode*> st;
+        while (curr || !st.empty())
         {
-            if (!root) return;
-            fun(root->left);
-            result.push_back(root->val);
-            fun(root->right);
-        };
-        fun(root);
+            while(curr)
+            {
+                st.push(curr);
+                curr = curr->left;
+            }
+            curr = st.top();
+            st.pop();
+            result.push_back(curr->val);
+            curr = curr->right;
+        }
         return result;
     }
 };
