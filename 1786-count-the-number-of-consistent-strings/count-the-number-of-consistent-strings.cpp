@@ -1,6 +1,7 @@
 class Solution {
 public:
     int countConsistentStrings(string allowed, vector<string>& words) {
+        ios_base::sync_with_stdio(0);
         int count = 0;
         bool coincidence = true;
         unordered_set<char> m_set;
