@@ -1,6 +1,9 @@
 class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
+        ios::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         auto max_element = nums[0], count = 0, max_count = 0;
         for (auto num : nums){
             if (max_element == num)
@@ -15,8 +18,6 @@ public:
                 count = 0;
             }
         }
-        if (count > max_count)
-            return count;
-        return max_count;
+        return max(max_count, count);
     }
 };
