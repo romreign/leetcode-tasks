@@ -6,15 +6,9 @@ public:
         while (left <= right)
         {
             if (abs(nums[left]) > abs(nums[right]))
-            {
-                result[index--] = nums[left] * nums[left];
-                left++;
-            }
+                result[index--] = nums[left] * nums[left++];
             else
-            {
-                result[index--] = nums[right] * nums[right];
-                right--;
-            }
+                result[index--] = nums[right] * nums[right--];
         }
         return result;
     }
