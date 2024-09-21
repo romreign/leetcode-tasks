@@ -14,8 +14,6 @@ public:
                 maxDist = max(maxDist, (right - left) / 2);
                 left = right;
             }
-            else if (seats[left] == 1 && seats[right] == 0)
-                continue;
         }
         int size = seats.size() - 1;
         maxDist = max((size - left), maxDist);
