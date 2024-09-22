@@ -21,11 +21,11 @@ public:
     bool remove(int val) {
         if (search(val) == false)
             return false;
-        auto iter = mp.find(val);
-        vec[iter->second] = vec[vec.size() - 1];
-        mp[vec[iter->second]] = iter->second;   
+        auto index = mp[val];
+        vec[index] = vec[vec.size() - 1];
+        mp[vec[index]] = index;   
         vec.pop_back();
-        mp.erase(iter);    
+        mp.erase(val);    
         return true;
     }
     
