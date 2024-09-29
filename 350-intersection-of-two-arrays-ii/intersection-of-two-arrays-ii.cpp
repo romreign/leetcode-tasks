@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        multiset<int> set;
+        unordered_multiset<int> set;
         vector<int> result;
         for (auto i = 0; i < nums1.size(); i++)
             set.insert(nums1[i]);    
