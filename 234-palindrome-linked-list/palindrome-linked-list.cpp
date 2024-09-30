@@ -34,6 +34,8 @@ public:
         return prev;
     }
     bool isPalindrome(ListNode* head) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0); cout.tie(0);
         auto left = head;
         auto middle_node = middleNode(head);
         auto right = reverse(middle_node);
