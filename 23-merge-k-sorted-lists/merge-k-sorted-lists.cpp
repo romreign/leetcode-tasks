@@ -45,6 +45,9 @@ public:
         return index_min_val;
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         auto* dummyNode = new ListNode{0, nullptr};
         auto curr = dummyNode;
         while(lists.size())
