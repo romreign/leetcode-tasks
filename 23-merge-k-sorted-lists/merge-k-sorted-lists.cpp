@@ -20,13 +20,11 @@ public:
     void deleteNullIter(vector<ListNode*>& lists)
     {
         for (auto i = 0; i < lists.size(); i++)
-        {
             if (!lists[i])
             {
                 lists.erase(lists.begin()+i);
                 i--;
             }
-        }
     }
     float getVal(ListNode* head)
     {
@@ -38,16 +36,11 @@ public:
     {
         int index_min_val = 0;
         for (auto i = 0; i < lists.size(); i++)
-        {
             if (getVal(lists[i]) < getVal(lists[index_min_val]))
                 index_min_val = i;
-        }
         return index_min_val;
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         auto* dummyNode = new ListNode{0, nullptr};
         auto curr = dummyNode;
         while(lists.size())
