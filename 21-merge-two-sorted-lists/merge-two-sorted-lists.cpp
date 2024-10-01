@@ -10,19 +10,29 @@
  */
 class Solution {
 public:
+    int getVal(ListNode* head)
+    {
+        if (!head)
+            return 101;
+        return head->val;
+    }
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if (!list1) return list2;
-        if (!list2) return list1;
-        if (list1->val <= list2->val)
+        auto dummyNode = new ListNode{0, nullptr};
+        auto curr = dummyNode;
+        while(list1 || list2)
         {
-            list1->next = mergeTwoLists(list1->next, list2);
-            return list1;
+            if (getVal(list1) > getVal(list2))
+            {
+                curr->next = list2;
+                list2 = list2->next;
+            }
+            else
+            {
+                curr->next = list1;
+                list1 = list1->next;
+            }
+            curr = curr->next;
         }
-        else
-        {
-            list2->next = mergeTwoLists(list1, list2->next);
-            return list2;
-        }
-
+        return dummyNode->next;
     }
 };
