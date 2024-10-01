@@ -10,10 +10,10 @@
  */
 class Solution {
 public:
-    int getVal(ListNode* head)
+    float getVal(ListNode* head)
     {
         if (!head)
-            return 101;
+            return numeric_limits<float>::infinity();
         return head->val;
     }
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
