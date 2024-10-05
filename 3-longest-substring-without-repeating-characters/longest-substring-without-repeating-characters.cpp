@@ -2,18 +2,19 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         auto first = 0, maxD = 0;
-        set<char> Set;
+        vector<bool> vec(127, false);
         for(auto second = 0; second < s.length(); second++)
         {
-            while (Set.count(s[second]))
+            while (vec[s[second]])
             {
-                Set.erase(s[first]);
+                vec[s[first]] = false;  
                 first++;
             }
-            Set.insert(s[second]);
+            vec[s[second]] = true;
             maxD = max(maxD, second - first + 1);
         }
         return maxD;
     }
 };
+
 
