@@ -1,38 +1,33 @@
 class ATM {
-    vector<int> banknotes;
-    vector<int> nominal;
+    vector<int> banknote;
+    vector<int> notes;
 public:
     ATM() {
-        banknotes = vector<int>{0, 0, 0, 0, 0};
-        nominal = vector<int>{20, 50, 100, 200, 500};
+        banknote = vector<int> {20, 50, 100, 200, 500};
+        notes = vector<int> (5, 0);
     }
     
     void deposit(vector<int> banknotesCount) {
         for (auto i = 0; i < banknotesCount.size(); i++)
-            banknotes.at(i) += banknotesCount.at(i);
+            notes[i] += banknotesCount[i];
     }
     
     vector<int> withdraw(int amount) {
-        vector<int> result{0, 0, 0, 0, 0};
-    
-        for (int i = banknotes.size() - 1; i >= 0; i--)
-        {
+        vector<int> result(5, 0);
+        for (int i = notes.size() - 1; i >= 0; --i) {
             if (amount == 0)
                 break;
-
-            auto count = amount / nominal.at(i);
-            result.at(i) = min(count, banknotes.at(i));
-            amount -= (result.at(i) * nominal.at(i));
+            auto count = amount / banknote[i];
+            count = count > notes[i] ? notes[i] : count;
+            result[i] = count;
+            amount -= result[i] * banknote[i];
         }
-        
         if (amount > 0)
             return {-1};
-
-        for (auto i = 0; i < banknotes.size(); i++)
-            banknotes.at(i) -= result.at(i);
-
-        return result; 
-        return{};
+        for (auto i = 0; i < notes.size(); i++) {
+            notes[i] -= result[i];
+        }
+        return result;
     }
 };
 
