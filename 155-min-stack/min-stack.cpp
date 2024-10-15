@@ -1,32 +1,27 @@
 class MinStack {
+    vector<int> v;
+    multiset<int> mv;
 public:
-    MinStack() = default;   
-    ~MinStack() = default;
-
+    MinStack() = default;
+    
     void push(int val) {
-        if (minval.empty() || val <= minval[minval.size() - 1])
-            minval.push_back(val);
-        st.push_back(val);
+        v.push_back(val);
+        mv.insert(val);
     }
     
     void pop() {
-        if (st[st.size() - 1] == minval[minval.size() - 1])
-            minval.pop_back();
-        st.pop_back();
+        mv.erase(mv.find(v.back()));
+        v.erase(v.end() - 1);
     }
     
     int top() {
-        return st[st.size()-1];
+        return v.back();
     }
     
     int getMin() {
-        return minval[minval.size()-1];
+        return *mv.begin();
     }
-
-private:
-    vector<int> st;
-    vector<int> minval;
-}; 
+};
 
 /**
  * Your MinStack object will be instantiated and called as such:
