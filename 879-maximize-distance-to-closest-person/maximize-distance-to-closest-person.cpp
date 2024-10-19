@@ -1,21 +1,19 @@
 class Solution {
 public:
     int maxDistToClosest(vector<int>& seats) {
-        int left = 0, maxDist = 0, size = seats.size();
-        for (auto right = 0 ; right < size; right++)
-        {
-            if (seats[left] == 0 && seats[right] == 1)
-            {
-                maxDist = max(maxDist, right - left);
-                left = right;
+        int l = 0, d = 0;
+        for (auto r = 0; r < seats.size(); r++) {
+            if (!seats[l] && seats[r]) {
+                d = max(d, r - l);
+                l = r;
             }
-            else if (seats[left] == 1 && seats[right] == 1)
-            {
-                maxDist = max(maxDist, (right - left) / 2);
-                left = right;
+            else if (seats[l] && seats[r]) {
+                d = max(d, (r - l) / 2);
+                l = r;
             }
         }
-        maxDist = max((size - 1 - left), maxDist);
-        return maxDist;    
+        if (l + 1 != seats.size())
+            d = max(d, (int)(seats.size() - l - 1));
+        return d;
     }
 };
