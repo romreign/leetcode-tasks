@@ -10,29 +10,25 @@
  */
 class Solution {
 public:
-    float getVal(ListNode* head)
-    {
-        if (!head)
+    float getVal(ListNode* l) {
+        if (!l)
             return numeric_limits<float>::infinity();
-        return head->val;
+        return l->val;
     }
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        auto dummyNode = new ListNode{0, nullptr};
-        auto curr = dummyNode;
-        while(list1 || list2)
-        {
-            if (getVal(list1) > getVal(list2))
-            {
-                curr->next = list2;
-                list2 = list2->next;
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode dh {};
+        auto* cur = &dh;
+        while (l1 || l2) {
+            if (getVal(l1) < getVal(l2)) {
+                cur->next = l1;
+                l1 = l1->next;
             }
-            else
-            {
-                curr->next = list1;
-                list1 = list1->next;
+            else {
+                cur->next = l2;
+                l2 = l2->next;
             }
-            curr = curr->next;
+            cur = cur->next;
         }
-        return dummyNode->next;
+        return dh.next;
     }
 };
