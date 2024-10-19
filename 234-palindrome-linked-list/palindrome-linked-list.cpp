@@ -10,23 +10,21 @@
  */
 class Solution {
 public:
-    ListNode* middleNode(ListNode* head)
-    {
-        auto slow = head, fast = head;
-        while (fast && fast->next)
-        {
+    ListNode* centre(ListNode* head) {
+        auto* slow = head, *fast = head;
+
+        while (fast && fast->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
         return slow;
     }
-    ListNode* reverse(ListNode* head)
-    {
+    ListNode* reverse(ListNode* head) {
         ListNode* prev = nullptr;
-        auto curr = head;
-        while(curr)
-        {
-            auto next = curr->next;
+        auto* curr = head;
+
+        while (curr) {
+            auto* next = curr->next;
             curr->next = prev;
             prev = curr;
             curr = next;
@@ -34,17 +32,14 @@ public:
         return prev;
     }
     bool isPalindrome(ListNode* head) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0); cout.tie(0);
-        auto left = head;
-        auto middle_node = middleNode(head);
-        auto right = reverse(middle_node);
-        while(right)
-        {
-            if (left->val != right->val)
+        auto* c = centre(head);
+        auto* r = reverse(c);
+
+        while (r) {
+            if (head->val != r->val)
                 return false;
-            left = left->next;
-            right = right->next;
+            r = r->next;
+            head = head->next;
         }
         return true;
     }
