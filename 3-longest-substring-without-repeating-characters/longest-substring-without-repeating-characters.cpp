@@ -1,20 +1,16 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        auto first = 0, maxD = 0;
-        vector<bool> vec(126, false);
-        for(auto second = 0; second < s.length(); second++)
-        {
-            while (vec[s[second]])
-            {
-                vec[s[first]] = false;  
-                first++;
+        vector<int> v(127);
+        int d = 0, l = -1;
+        for (auto i = 0; i < s.size(); i++) {
+            while (v[s[i]]) {
+                l++;
+                v[s[l]]--;
             }
-            vec[s[second]] = true;
-            maxD = max(maxD, second - first + 1);
+            v[s[i]]++;
+            d = max(d, (i - l));
         }
-        return maxD;
+        return d;
     }
 };
-
-
