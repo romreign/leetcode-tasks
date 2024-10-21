@@ -1,18 +1,14 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        unordered_multiset<int> set;
+        unordered_multiset<int> s1(nums1.begin(), nums1.end());
+        unordered_multiset<int> s2(nums2.begin(), nums2.end());
         vector<int> result;
-        for (auto i = 0; i < nums1.size(); i++)
-            set.insert(nums1[i]);    
-        for (auto i = 0; i < nums2.size(); i++)
-        {
-            if (set.count(nums2[i]) > 0)
-            {
-                result.push_back(nums2[i]);
-                set.erase(set.find(nums2[i]));
+        for (auto it = s1.begin(); it != s1.end(); it++)
+            if (s2.find(*it) != s2.end()){
+                result.push_back(*it);
+                s2.erase(s2.find(*it));
             }
-        }
         return result;
     }
 };
