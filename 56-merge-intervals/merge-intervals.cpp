@@ -1,25 +1,15 @@
 class Solution {
 public:
-    bool intersection(vector<int> first, vector<int> second)
-    {
-        return max(first[0], second[0]) <= min(first[1], second[1]);
-    }
-
-    vector<int> unification(vector<int> first, vector<int> second)
-    {
-        return {first[0], (max(first[1], second[1]))};
-    }
-
-    vector<vector<int>> merge(vector<vector<int>>& intervals) 
-    {
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
         sort(intervals.begin(), intervals.end());
         vector<vector<int>> result;
         result.push_back(intervals[0]);
-
-        for(auto i = 1; i < intervals.size(); i++)
-        {
-            if (intersection(intervals[i], result[result.size() - 1]))
-                result[result.size() - 1] = unification(result[result.size() - 1], intervals[i]);
+        for (auto i = 1; i < intervals.size(); i++) {
+            if (max(intervals[i][0], result[result.size() - 1][0]) 
+                    <= min(intervals[i][1], result[result.size() - 1][1])) 
+                result[result.size() - 1] = 
+                    {min(intervals[i][0], result[result.size() - 1][0]), 
+                        max(intervals[i][1], result[result.size() - 1][1])};
             else
                 result.push_back(intervals[i]);
         }
