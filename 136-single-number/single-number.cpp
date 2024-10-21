@@ -2,8 +2,8 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         int num = 0;
-        for (auto i = 0; i < nums.size(); i++)
-            num ^= nums[i];
+        for (auto n : nums) 
+            num ^= n;
         return num;
     }
 };
