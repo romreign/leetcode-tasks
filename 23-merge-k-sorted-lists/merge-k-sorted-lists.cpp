@@ -8,6 +8,13 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+auto mmm = [](){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 0;
+};
+
 class Solution {
 public:
     bool isNullVector(vector<ListNode*>& lists)
@@ -17,40 +24,38 @@ public:
                 return false;
         return true;
     }
-
     void deleteNullIter(vector<ListNode*>& lists)
     {
         for (auto i = 0; i < lists.size(); i++)
+        {
             if (!lists[i])
             {
                 lists.erase(lists.begin()+i);
                 i--;
             }
+        }
     }
-
     float getVal(ListNode* head)
     {
         if (!head)
             return numeric_limits<float>::infinity();
         return head->val;
     }
-
     int nextNode(vector<ListNode*>& lists)
     {
         int index_min_val = 0;
-
         for (auto i = 0; i < lists.size(); i++)
+        {
             if (getVal(lists[i]) < getVal(lists[index_min_val]))
                 index_min_val = i;
+        }
         return index_min_val;
     }
-
-    ListNode* mergeKLists(vector<ListNode*>& lists) 
-    {
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
         auto* dummyNode = new ListNode{0, nullptr};
         auto curr = dummyNode;
-
-        while(lists.size()){
+        while(lists.size())
+        {
             auto index_min_val = nextNode(lists);
             curr->next = lists[index_min_val];
             if (!isNullVector(lists))
