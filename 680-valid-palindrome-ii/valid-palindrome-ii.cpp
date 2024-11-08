@@ -1,20 +1,17 @@
 class Solution {
 public:
-    bool validPalindrome(const string& s, int l, int r, int cerr) {
+    bool ispalindrome(string& s, int l, int r, int c) {
         while (l < r) {
             if (s[l] != s[r]) {
-                if (cerr)
-                    return validPalindrome(s, l + 1, r, cerr - 1) || validPalindrome(s, l, r - 1, cerr - 1) ;
-                else
-                    return false;
+                if (c == 0) 
+                    return ispalindrome(s, l + 1, r, ++c) || ispalindrome(s, l, r - 1, ++c);
+                else return false;
             }
-            l++;
-            r--;
+            l++, r--;
         }
         return true;
     }
-
     bool validPalindrome(string s) {
-        return validPalindrome(s, 0, (s.size() - 1), 1);
+        return ispalindrome(s,0, s.size() - 1, 0);
     }
 };
