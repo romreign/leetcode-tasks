@@ -1,21 +1,18 @@
 class Solution {
 public:
     vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
-        vector<vector<int>> result = vector<vector<int>>(2);
-        unordered_set<int> mp1;
-        unordered_set<int> mp2;
+        vector<vector<int>> result (2);
+        unordered_set<int> m1(nums1.begin(), nums1.end());
+        unordered_set<int> m2(nums2.begin(), nums2.end());
 
-        copy(nums1.begin(), nums1.end(), inserter(mp1, mp1.end()));
-        copy(nums2.begin(), nums2.end(), inserter(mp2, mp2.end()));
-
-        for (auto it1 = mp1.begin(); it1 != mp1.end(); it1++)
-            if (mp2.find(*it1) == mp2.end())
-                result[0].push_back(*it1);
-
-        for (auto it2 = mp2.begin(); it2 != mp2.end(); it2++)
-            if (mp1.find(*it2) == mp1.end())
-                result[1].push_back(*it2);
+        for (auto it = m1.begin(); it != m1.end(); it++)
+            if (m2.find(*it) == m2.end())
+                result[0].push_back(*it); 
         
+        for (auto it = m2.begin(); it != m2.end(); it++)
+            if (m1.find(*it) == m1.end())
+                result[1].push_back(*it);
+
         return result;
     }
 };
