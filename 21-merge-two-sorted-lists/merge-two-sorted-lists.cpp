@@ -15,20 +15,21 @@ public:
             return numeric_limits<float>::infinity();
         return l->val;
     }
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode dh {};
-        auto* cur = &dh;
-        while (l1 || l2) {
-            if (getVal(l1) < getVal(l2)) {
-                cur->next = l1;
-                l1 = l1->next;
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode dummyNode{};
+        ListNode* ptr_d = &dummyNode;
+        while (list1 || list2) {
+            if (getVal(list1) <= getVal(list2)) {
+                ptr_d->next = list1;
+                list1 = list1->next;
             }
             else {
-                cur->next = l2;
-                l2 = l2->next;
+                ptr_d->next = list2;
+                list2 = list2->next;
             }
-            cur = cur->next;
+            ptr_d = ptr_d->next;
         }
-        return dh.next;
+        return dummyNode.next;
     }
 };
