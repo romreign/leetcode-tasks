@@ -1,13 +1,12 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        std::vector<int> result;
-        unordered_multiset<int> m1 (nums1.begin(), nums1.end());
-        unordered_multiset<int> m2 (nums2.begin(), nums2.end());
-        for (auto it = m1.begin(); it != m1.end(); it++) {
-            if (m2.find(*it) != m2.end()) {
-                result.push_back(*it);
-                m2.erase(m2.find(*it));
+        vector<int> result;
+        unordered_multiset<int> mp1 (nums1.begin(), nums1.end());
+        for (auto i = 0; i < nums2.size(); i++) {
+            if (mp1.find(nums2[i]) != mp1.end()) {
+                result.push_back(nums2[i]);
+                mp1.erase(mp1.find(nums2[i]));
             }
         }
         return result;
