@@ -3,13 +3,15 @@ public:
     bool isAnagram(string s, string t) {
         if (s.size() != t.size())
             return false;
-        vector<int> v(27);
-        for (auto c : s)
-            v[c - 'a']++;
+        vector<int> alp (27, 0);
+
+        for (auto c : s) 
+            alp[c - 'a']++;
+
         for (auto c : t) {
-            if (v[c - 'a'] == 0)
+            alp[c - 'a']--;
+            if (alp[c - 'a'] < 0)
                 return false;
-            v[c - 'a']--;
         }
         return true;
     }
