@@ -11,17 +11,14 @@
  */
 class Solution {
 public:
-    bool symmetric (TreeNode* l, TreeNode* r) {
-        if (!l || !r)
+    bool isSymmetric(TreeNode* l, TreeNode* r) {
+        if (!l || !r) 
             return !l && !r;
-        if (l->val == r->val)
-            return symmetric(l->left, r->right) && symmetric(l->right, r->left);
-        else
+        if (l->val != r->val)
             return false;
+        return isSymmetric(l->left, r->right) && isSymmetric(l->right, r->left);
     }
     bool isSymmetric(TreeNode* root) {
-        if (!root)
-            return true;
-        return symmetric(root->left, root->right);
+        return isSymmetric(root->left, root->right);
     }
 };
