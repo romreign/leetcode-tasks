@@ -1,13 +1,14 @@
 class Solution {
 public:
     string reverseWords(string s) {
-            stringstream ss(s);
-            string answer = "", s1;
-            while (ss >> s1) {
-                reverse(s1.begin(), s1.end());
-                answer += (s1 + " ");
-            }
-            answer.pop_back();
-            return answer;
+        stringstream ss(s);
+        string t, result = "";
+        while (ss >> t) {
+            for (int i = t.size() - 1; i >= 0; i--)
+                result += t[i];
+            result += ' ';
+        }
+        result.pop_back();
+        return result;
     }
 };
