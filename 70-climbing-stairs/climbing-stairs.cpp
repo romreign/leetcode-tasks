@@ -1,14 +1,11 @@
 class Solution {
 public:
-    vector<int> steps;
-    int step (int n)
-    {
-        if (n <= 3) return n;
-        if (steps[n] != -1) return steps[n];
-        return steps[n] = step(n-1) + step(n - 2);     
+    unordered_map<int, int> mp {{0, 0}, {1, 1}, {2,2}, {3,3}};
+    int climb(int n) {
+        if (mp.find(n) != mp.end()) return mp[n];
+        else return mp[n] = climb(n - 1) + climb(n - 2);
     }
     int climbStairs(int n) {
-        steps = vector<int>(n + 1, -1);
-        return step(n);
+        return climb(n);
     }
 };
