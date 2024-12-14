@@ -2,11 +2,11 @@ class Solution {
 public:
     string reverseWords(string s) {
         stringstream ss(s);
-        string t, result = "";
-        while (ss >> t) {
-            for (int i = t.size() - 1; i >= 0; i--)
-                result += t[i];
-            result += ' ';
+        string buffer = "";
+        string result = "";
+        while (ss >> buffer) {
+            reverse(buffer.begin(), buffer.end());
+            result += buffer + " ";
         }
         result.pop_back();
         return result;
