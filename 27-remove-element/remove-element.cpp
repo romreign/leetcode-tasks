@@ -2,9 +2,9 @@ class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
         int left = 0;
-        for (auto right = 0; right < nums.size(); right++) {
-            if (nums[right] != val) {
-                swap(nums[left], nums[right]);
+        for (auto i = 0; i < nums.size(); i++) {
+            if (nums[i] != val) {
+                swap(nums[i], nums[left]);
                 left++;
             }
         }
