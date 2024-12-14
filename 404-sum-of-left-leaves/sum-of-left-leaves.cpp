@@ -11,20 +11,18 @@
  */
 class Solution {
 public:
+    void sumOfLeftLeaves(TreeNode* root, int& s) {
+        if (!root)
+            return;
+        if (root && root->left && !root->left->left && !root->left->right)
+            s += root->left->val;
+        sumOfLeftLeaves(root->left, s);
+        sumOfLeftLeaves(root->right, s);
+    }
+
     int sumOfLeftLeaves(TreeNode* root) {
         int s = 0;
-        queue<pair<TreeNode*, bool>> q;
-        q.push({root, false});
-        while (!q.empty()) {
-            auto [curr, flag] = q.front();
-            q.pop();
-            if (flag && !curr->left && !curr->right)
-                s += curr->val;
-            if (curr->left) 
-                q.push({curr->left, true});
-            if (curr->right)
-                q.push({curr->right, false});
-        }
+        sumOfLeftLeaves(root, s);
         return s;
     }
 };
