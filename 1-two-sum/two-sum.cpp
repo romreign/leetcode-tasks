@@ -3,10 +3,10 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> mp;
         for (auto i = 0; i < nums.size(); i++) {
-            auto second = target - nums[i];
-            if (mp.find(second) != mp.end()) return {mp[second], i};
+            int second = target - nums[i];
+            if (mp.find(second) != mp.end()) return {mp[second],i};
             mp[nums[i]] = i;
-        }    
+        }
         return {};
     }
 };
