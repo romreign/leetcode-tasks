@@ -1,14 +1,14 @@
 class RecentCounter {
 public:
-    vector<int> buffer;
+    vector<int> buf;
     
     int ping(int t) {
-        int count = 0;
-        buffer.push_back(t);
-        for (auto i = 0; i < buffer.size(); i++)
-            if (buffer[i] >= t - 3000 && buffer[i] <= t)
-                count++;
-        return count;
+        int c = 0;
+        buf.push_back(t);
+        for (auto n : buf)
+            if (t - 3000 <= n && n <= t)
+                c++;
+        return c;
     }
 };
 
