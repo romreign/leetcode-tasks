@@ -1,29 +1,28 @@
 class Solution {
 public:
-    vector<int> pre;
-    void pref(string s) {
-        pre = vector<int>(s.size(), 0);
-        for (int i = 1; i < s.size(); i++) {
-            int j = pre[i - 1];
-
+    vector<int> p;
+    void preix(string& s) {
+        p = vector<int>(s.size(), 0);
+        for (auto i = 1; i < p.size(); i++) {
+            int j = p[i - 1];
             while (j > 0 && s[j] != s[i])
-                j = pre[j - 1];
-            if (s[j] == s[i])
+                j = p[j - 1];
+            if (s[i] == s[j])
                 j++;
-            pre[i] = j;
+            p[i] = j;
         }
     }
     int strStr(string haystack, string needle) {
-        pref(needle);
-        int j = 0; 
-        for (int i = 0; i < haystack.size(); i++) {
-            while (j > 0 && haystack[i] != needle[j]) 
-                j = pre[j - 1];
-            if (haystack[i] == needle[j])
+        preix(needle);
+        int j = 0;
+        for (auto i = 0; i < haystack.size(); i++) {
+            while (j > 0 && haystack[i] != needle[j])
+                j = p[j - 1];
+            if (needle[j] == haystack[i])
                 j++;
-            if (j == needle.size()) 
-                return i - j + 1; 
+            if(j == needle.size())
+                return i - j + 1;
         }
-        return -1; 
+        return -1;
     }
 };
