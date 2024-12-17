@@ -11,15 +11,14 @@
  */
 class Solution {
 public:
-    void sumOfLeftLeaves(TreeNode* root, int& s) {
-        if (!root)
+    void sumOfLeftLeaves(TreeNode* r, int& s) {
+        if (!r)
             return;
-        if (root && root->left && !root->left->left && !root->left->right)
-            s += root->left->val;
-        sumOfLeftLeaves(root->left, s);
-        sumOfLeftLeaves(root->right, s);
+        if (r->left && !r->left->left && !r->left->right)
+            s += r->left->val;
+        sumOfLeftLeaves(r->left, s);
+        sumOfLeftLeaves(r->right, s);
     }
-
     int sumOfLeftLeaves(TreeNode* root) {
         int s = 0;
         sumOfLeftLeaves(root, s);
