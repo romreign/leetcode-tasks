@@ -1,17 +1,17 @@
 class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
-        int maxD = 0, zeros = 0, left = 0;
-        for (auto i = 0; i < nums.size(); i++) {
-            if (nums[i] == 0)
+        int l = 0, zeros = 0, maxCount = 0;
+        for (auto r = 0; r < nums.size(); r++) {
+            if (nums[r] == 0)
                 zeros++;
             while (zeros > 1) {
-                if (nums[left] == 0)
+                if (nums[l] == 0)
                     zeros--;
-                left++;
+                l++;
             }
-            maxD = max(maxD, i - left);
+            maxCount = max(maxCount, r - l);
         }
-        return maxD;
+        return maxCount;
     }
 };
