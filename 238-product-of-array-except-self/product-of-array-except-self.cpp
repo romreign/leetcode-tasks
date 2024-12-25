@@ -1,20 +1,18 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        int n = nums.size();
-        int x = 1;
+        vector<int> result(nums.size());
+        int left = 1, right = 1;
 
-        vector<int> ans(n);
-        ans[0] = 1;
-
-        for (auto i = 1; i < n; i++)
-            ans[i] = ans[i - 1] * nums[i - 1];
-
-        for (auto i = n - 1; i >= 0; i--) {
-            ans[i] *= x;
-            x *= nums[i]; 
+        for(auto i = 0; i < nums.size(); i++) {
+            result[i] = left;
+            left *= nums[i];
         }
 
-        return ans;
+        for(int i = nums.size() - 1; i >= 0; i--) {
+            result[i] *= right;
+            right *= nums[i];
+        } 
+        return result;
     }
-};  
+};
