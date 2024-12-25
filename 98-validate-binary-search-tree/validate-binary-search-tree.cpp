@@ -11,18 +11,17 @@
  */
 class Solution {
 public:
-    bool isValid(TreeNode* r, double lv, double rv) {
-        if (!r)
-            return true;
-        if (r->val > lv && r->val < rv)
-            return isValid(r->left, lv, r->val) && isValid(r->right, r->val, rv);
-        else 
+    bool isValidBST(TreeNode* r, double lv, double rv) {
+        if(!r) return true;
+        if(lv < r->val && rv > r->val) 
+            return isValidBST(r->left, lv, r->val) && isValidBST(r->right, r->val, rv);
+        else
             return false;
     }
 
     bool isValidBST(TreeNode* root) {
         float lv = -numeric_limits<double>::infinity();
         float rv = numeric_limits<double>::infinity();
-        return isValid(root, lv, rv);
+        return isValidBST(root, lv, rv);
     }
 };
