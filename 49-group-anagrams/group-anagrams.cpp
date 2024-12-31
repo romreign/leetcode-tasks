@@ -4,15 +4,15 @@ public:
         vector<vector<string>> result;
         unordered_map<string, vector<string>> mp;
 
-        for (auto str : strs) {
-            auto key = str;
+        for (auto& s : strs) {
+            auto key = s;
             sort(key.begin(), key.end());
-            mp[key].push_back(str);
+            mp[key].push_back(s);
         }
 
-        for (auto p : mp) 
+        for (auto& p : mp)
             result.push_back(p.second);
-        
+
         return result;
     }
 };
