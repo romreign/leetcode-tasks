@@ -1,28 +1,29 @@
 class RandomizedSet {
 public:
     vector<int> buffer;
-    unordered_map<int,int> val_index;
+    unordered_map<int, int> mp;
 
-    bool find(int val) {
-        return val_index.find(val) != val_index.end();
+    bool find(int& val) {
+        return mp.contains(val);
     }
 
     bool insert(int val) {
-        if (find(val))
+        if(find(val))
             return false;
         buffer.push_back(val);
-        val_index[val] = buffer.size() - 1;
+        mp[val] = buffer.size() - 1;
         return true;
     }
     
     bool remove(int val) {
-        if (!find(val))
+        if(!find(val))
             return false;
-        auto i = val_index[val];
-        val_index[buffer[buffer.size() - 1]] = i;
-        swap(buffer[i], buffer[buffer.size() - 1]);
-        val_index.erase(val);
+
+        auto it = mp[val];
+        swap(buffer[it], buffer[buffer.size() - 1]);
+        mp[buffer[it]] = it;
         buffer.pop_back();
+        mp.erase(val);
         return true;
     }
     
