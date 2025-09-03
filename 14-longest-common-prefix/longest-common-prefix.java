@@ -10,15 +10,15 @@ class Solution {
             int k = 0;
 
             while(k < strBuffer.length()) {
-                if (strBuffer.charAt(k) != strs[i].charAt(k))
+                if (strBuffer.charAt(k) == strs[i].charAt(k))
+                    k++;
+                else 
                     if (k == 0)
                         return "";
                     else {
                         strBuffer.setLength(k);
                         break;
                     }
-                if (strBuffer.charAt(k) == strs[i].charAt(k))
-                    k++;
             }
         }
         return strBuffer.toString();
