@@ -9,38 +9,27 @@
  * }
  */
 class Solution {
-    private float getVal(ListNode l) {
-        return l != null ? l.val : Float.POSITIVE_INFINITY;
-    }
-
-    private boolean elementsIsNotNull(ListNode[] l) {
-        for (int i = 0; i < l.length; i++) 
-            if (l[i] != null)
-                return true;
-        return false;
-    }
-
-    private ListNode findMin(ListNode[] l) {
-        ListNode min = null;
-        int index = 0;
-        for (int i = 0; i < l.length; i++) {
-            if (getVal(min) >= getVal(l[i])) {
-                min = l[i];
-                index = i;
+    public ListNode mergeKLists(ListNode[] lists) {
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
+        
+        for (ListNode node : lists) {
+            if (node != null) {
+                minHeap.offer(node);
             }
         }
-        l[index] = l[index].next;
-        return min;
-    }
-    
-    public ListNode mergeKLists(ListNode[] lists) {
-        ListNode dummy = new ListNode();
+        
+        ListNode dummy = new ListNode(0);
         ListNode curr = dummy;
 
-        while (elementsIsNotNull(lists)) {
-            curr.next = findMin(lists);
+        while (!minHeap.isEmpty()) {
+            ListNode minNode = minHeap.poll();
+            curr.next = minNode;
             curr = curr.next;
+            if (minNode.next != null) {
+                minHeap.offer(minNode.next);
+            }
         }
+        
         return dummy.next;
     }
 }
