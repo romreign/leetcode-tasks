@@ -3,12 +3,12 @@ func isPalindrome(s string) bool {
         leftRune := unicode.ToLower(rune(s[first]))
         rightRune := unicode.ToLower(rune(s[second]))
 
-        if !isValidChar(leftRune) {
+        if !isLetterAndDigitRune(leftRune) {
             first++
             continue
         }
 
-        if !isValidChar(rightRune) {
+        if !isLetterAndDigitRune(rightRune) {
             second--
             continue
         }
@@ -22,6 +22,6 @@ func isPalindrome(s string) bool {
     return true
 }
 
-func isValidChar(ch rune) bool {
+func isLetterAndDigitRune(ch rune) bool {
     return unicode.IsDigit(ch) || unicode.IsLetter(ch)
 }
