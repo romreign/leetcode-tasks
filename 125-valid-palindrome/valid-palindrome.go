@@ -1,22 +1,27 @@
 func isPalindrome(s string) bool {
-    for first, second := 0, len(s) - 1; first < second; first, second = first + 1, second - 1 {
-        for first < second && !isValidChar(rune(s[first])) {
+    for first, second := 0, len(s) - 1; first < second; {
+        leftRune := unicode.ToLower(rune(s[first]))
+        rightRune := unicode.ToLower(rune(s[second]))
+
+        if !isValidChar(leftRune) {
             first++
+            continue
         }
-        for first < second && !isValidChar(rune(s[second])) {
+
+        if !isValidChar(rightRune) {
             second--
+            continue
         }
-        if strings.ToLower(string(s[first])) != strings.ToLower(string(s[second])) {
+
+        if leftRune != rightRune {
             return false
         }
-        fmt.Println(first)
+
+        first, second = first + 1, second - 1
     }
     return true
 }
 
 func isValidChar(ch rune) bool {
-    if ch >= 'A' && ch <= 'Z' || ch >= 'a' && ch <= 'z' || ch >= '0' && ch <= '9' {
-        return true
-    }
-    return false
+    return unicode.IsDigit(ch) || unicode.IsLetter(ch)
 }
