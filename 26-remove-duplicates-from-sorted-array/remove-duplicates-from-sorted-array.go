@@ -1,12 +1,12 @@
 func removeDuplicates(nums []int) int {
-    j := 0
-    for i, _ := range nums {
-        if nums[i] != nums[j] {
-            j++
-            nums[j] = nums[i]
+    s := 0
+
+    for f := 0; f < len(nums); f++ {
+        if nums[f] != nums[s] {
+            s++
+            nums[s], nums[f] = nums[f], nums[s]
         }
     }
-    j++
-    nums = nums[:j]
-    return j
+
+    return s + 1
 }
