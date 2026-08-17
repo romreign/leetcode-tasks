@@ -1,11 +1,12 @@
 func isSubsequence(s string, t string) bool {
-    first, second := 0, 0
+    p1, p2 := 0, 0
 
-    for first < len(s) && second < len(t) {
-        if s[first] == t[second] {
-            first++
+    for p1 < len(s) && p2 < len(t) {
+        if s[p1] == t[p2]{
+            p1++
         }
-        second++
+        p2++
     }
-    return first == len(s)
+
+    return p1 == len(s)
 }
