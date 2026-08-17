@@ -1,10 +1,8 @@
 func moveZeroes(nums []int)  {
-    j := 0
-    for i, _ := range nums {
-        if (nums[i] == 0) {
-            continue
+    for s, f := 0, 0; f < len(nums); f++ {
+        if nums[f] != 0{
+            nums[s], nums[f] = nums[f], nums[s]
+            s++
         }
-        nums[i], nums[j] = nums[j], nums[i]
-        j++
     }
 }
