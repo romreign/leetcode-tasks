@@ -1,19 +1,21 @@
 func sortedSquares(nums []int) []int {
     n := len(nums)
-    result := make([]int, n)
-    left, right, index := 0, n - 1, n - 1 
+    res := make([]int, n)
+    p1, p2, p3 := 0, n-1, n-1
 
-    for left <= right {
-        if math.Abs(float64(nums[left])) < math.Abs(float64(nums[right])) {
-            result[index] = nums[right] * nums[right] 
-            index--
-            right--
+    for p1 <= p2 {
+        lsquare := nums[p1] * nums[p1]
+        rsquare := nums[p2] * nums[p2]
+
+        if lsquare < rsquare {
+            res[p3] = rsquare
+            p2--
         } else {
-            result[index] = nums[left] * nums[left]
-            index--
-            left++
+            res[p3] = lsquare
+            p1++
         }
+        p3--
     }
 
-    return result
+    return res
 }
