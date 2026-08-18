@@ -1,14 +1,14 @@
 func merge(nums1 []int, m int, nums2 []int, n int)  {
-    m, n = m - 1, n - 1
+    p1, p2, p3 := m - 1, n - 1, m + n - 1
 
-    for i := m + n + 1; n >= 0; i-- {
-        if m >= 0 && nums1[m] > nums2[n] {
-            nums1[i] = nums1[m]
-            m--
+    for p2 >= 0 {
+        if p1 >= 0 && nums1[p1] > nums2[p2] {
+            nums1[p3] = nums1[p1]
+            p1--
         } else {
-            nums1[i] = nums2[n]
-            n--
+            nums1[p3] = nums2[p2]
+            p2--
         }
+        p3--
     }
 }
-
