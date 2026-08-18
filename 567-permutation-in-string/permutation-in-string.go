@@ -4,33 +4,25 @@ func checkInclusion(s1 string, s2 string) bool {
     }
 
     freq, windowFreq := [26]int{}, [26]int{}
-    l, r := 0, len(s1)
 
     for _, v := range s1 {
         freq[v - 'a']++
     }
 
-    for _, v := range s2[l:r] {
+    for _, v := range s2[:len(s1)] {
         windowFreq[v - 'a']++
     }
 
-    if equalArray(freq, windowFreq) == true {
-        return true
-    }
-
-    for r < len(s2) {
-        windowFreq[s2[l] - 'a']--
-        windowFreq[s2[r] - 'a']++
-
+    for l, r := 0, len(s1); r < len(s2); l, r = l + 1, r + 1 {
         if equalArray(freq, windowFreq) == true {
             return true
         }
 
-        l++
-        r++
+        windowFreq[s2[l] - 'a']--
+        windowFreq[s2[r] - 'a']++
     }
 
-    return false
+    return equalArray(freq, windowFreq)
 }
 
 func equalArray(arr1, arr2 [26]int) bool {
