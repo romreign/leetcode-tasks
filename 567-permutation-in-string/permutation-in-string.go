@@ -14,7 +14,7 @@ func checkInclusion(s1 string, s2 string) bool {
     }
 
     for l, r := 0, len(s1); r < len(s2); l, r = l + 1, r + 1 {
-        if equalArray(freq, windowFreq) == true {
+        if equalArray(freq, windowFreq) {
             return true
         }
 
