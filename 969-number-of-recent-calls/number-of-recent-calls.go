@@ -1,5 +1,6 @@
 type RecentCounter struct {
     calls []int
+    countCalls int
 }
 
 
@@ -10,15 +11,12 @@ func Constructor() RecentCounter {
 
 func (this *RecentCounter) Ping(t int) int {
     this.calls = append(this.calls, t)
-    countCalls := 0
-
-    for _, v := range this.calls {
-        if t - 3000 <= v && v <= t {
-            countCalls++
-        }
+   
+    for t - 3000 > this.calls[this.countCalls] {
+        this.countCalls++
     }
-
-    return countCalls
+    
+    return len(this.calls) - this.countCalls
 }
 
 
