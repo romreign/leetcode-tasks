@@ -1,23 +1,23 @@
 func partitionLabels(s string) []int {
-    letterLastIdx := [26]int{}
+	last := [26]int{}
 
-    for i, v := range s {
-        letterLastIdx[v - 'a'] = i
-    }
+	for i := 0; i < len(s); i++ {
+		last[s[i]-'a'] = i
+	}
 
-    currMaxW := 0
-    res := make([]int, 0, 1)
-    l, r := 0, 0
+	result := make([]int, 0)
+	start, end := 0, 0
 
-    for r < len(s) {
-        d := letterLastIdx[s[r] - 'a']
-        currMaxW = max(currMaxW, d)
-        if r == currMaxW {
-            res = append(res, r - l + 1)
-            l = r + 1
-        }
-        r++
-    }
+	for i := 0; i < len(s); i++ {
+		if last[s[i]-'a'] > end {
+			end = last[s[i]-'a']
+		}
 
-    return res
+		if i == end {
+			result = append(result, end-start+1)
+			start = i + 1
+		}
+	}
+
+	return result
 }
